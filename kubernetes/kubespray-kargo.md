@@ -20,6 +20,12 @@ kube_service_addresses: 10.0.0.0/18
 kube_pods_subnet: 10.0.64.0/18
 kube_network_node_prefix: 22
 
+# kubelet custom options roles/kubernetes/node/defaults/main.yml
+kubelet_custom_flags:
+  - "--max-pods=512"
+  
+# other components can have custom flags too
+# https://github.com/kubernetes-incubator/kubespray/blob/master/docs/vars.md
 ```
 
 start setup
