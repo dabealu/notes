@@ -3,7 +3,7 @@ steps for ubuntu:
 ```
 # install packages
 sudo apt-get update
-sudo apt-get install -y i3 i3blocks feh arandr thunar scrot lxappearance 
+sudo apt-get install -y i3 i3blocks feh arandr thunar scrot xclip lxappearance 
 # copy configs
 mkdir -p ~/.config/i3
 cp * ~/.config/i3/
