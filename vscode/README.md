@@ -1,0 +1,1 @@
+Copy of `~/.config/Code/User/settings.json`  

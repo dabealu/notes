@@ -1,0 +1,14 @@
+{
+    "window.restoreWindows": "all",
+    "window.zoomLevel": 1,
+    "window.menuBarVisibility": "toggle",
+    "workbench.activityBar.visible": true,
+    "workbench.startupEditor": "none",
+    "workbench.colorTheme": "Monokai",
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.renderControlCharacters": true,
+    "git.decorations.enabled": true,
+    "git.enabled": true,
+    "files.hotExit": "onExit",
+}
