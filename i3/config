@@ -144,26 +144,26 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-# Pressing left will shrink the window’s width.
-# Pressing right will grow the window’s width.
-# Pressing up will shrink the window’s height.
-# Pressing down will grow the window’s height.
-#bindsym j resize shrink width 10 px or 10 ppt
-#bindsym k resize grow height 10 px or 10 ppt
-#bindsym l resize shrink height 10 px or 10 ppt
-#bindsym semicolon resize grow width 10 px or 10 ppt
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    #bindsym j resize shrink width 10 px or 10 ppt
+    #bindsym k resize grow height 10 px or 10 ppt
+    #bindsym l resize shrink height 10 px or 10 ppt
+    #bindsym semicolon resize grow width 10 px or 10 ppt
 
-# same bindings, but for the arrow keys
-		bindsym Left resize shrink width 10 px or 10 ppt
-		bindsym Down resize grow height 10 px or 10 ppt
-		bindsym Up resize shrink height 10 px or 10 ppt
-		bindsym Right resize grow width 10 px or 10 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-# back to normal: Enter or Escape
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -192,17 +192,18 @@ bindsym $mod+d exec dmenu_run -b -p '>' -fn '$font:size=$dmenu-font-size' -sb '$
 
 # bar - i3blocks 
 bar {
-                status_command i3blocks -c ~/.config/i3/blocks.conf
-                tray_output primary
-                font $font $bar-font-size
-                colors {
-                                background $inactive-bg-color
-				separator  $inactive-text-color
-#                               class              border    background         text
-				focused_workspace  $bg-color $bg-color          $text-color
-				inactive_workspace $bg-color $inactive-bg-color $inactive-text-color
-				urgent_workspace   $bg-color $urgent-bg-color   $text-color
-                }
+    status_command i3blocks -c ~/.config/i3/blocks.conf
+    tray_output primary
+    font $font $bar-font-size
+
+    colors {
+        background $inactive-bg-color
+        separator  $inactive-text-color
+        # class            border    background         text
+        focused_workspace  $bg-color $bg-color          $text-color
+        inactive_workspace $bg-color $inactive-bg-color $inactive-text-color
+        urgent_workspace   $bg-color $urgent-bg-color   $text-color
+    }
 }
 
 
@@ -222,15 +223,15 @@ exec thunar
 # shutdown/reboot/suspend
 set $mode_system (p)suspend, (h)hibernate, (e)logout, (l)lock, (r)reboot, (s)shutdown
 mode "$mode_system" {
-                bindsym p exec --no-startup-id i3lock --color "$lock-color" && systemctl suspend, mode "default"
-                bindsym h exec --no-startup-id i3lock --color "$lock-color" && systemctl hibernate, mode "default"
-                bindsym e exec --no-startup-id i3-msg exit logout, mode "default"
-                bindsym l exec --no-startup-id i3lock --color "$lock-color"
-                bindsym r exec --no-startup-id systemctl reboot, mode "default"
-                bindsym s exec --no-startup-id systemctl poweroff, mode "default"
-                # back to normal: Enter or Escape
-                bindsym Return mode "default"
-                bindsym Escape mode "default"
+    bindsym p exec --no-startup-id i3lock --color "$lock-color" && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id i3lock --color "$lock-color" && systemctl hibernate, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit logout, mode "default"
+    bindsym l exec --no-startup-id i3lock --color "$lock-color"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym s exec --no-startup-id systemctl poweroff, mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+Escape mode "$mode_system"
 
@@ -283,4 +284,3 @@ bindsym $mod+x move workspace to output right
 
 # set wallpaper
 exec_always feh --bg-scale "$HOME/Firefox_wallpaper.png"
-
