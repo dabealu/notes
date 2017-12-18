@@ -11,6 +11,7 @@ sudo apt-get install -y \
   thunar \
   scrot \
   xclip \
+  xautolock \
   lxappearance \
   gsimplecal
 

@@ -111,19 +111,6 @@ assign [class="Atom"] $workspace3
 assign [class="Code"] $workspace3
 assign [class="Thunar"] $workspace4
 
-# autostart
-## network manager applet
-exec --no-startup-id nm-applet
-## screen shutdown (20m) and lock (25m)
-exec --no-startup-id xset dpms 1200
-exec --no-startup-id xautolock -time 25 -locker i3lock
-## apps
-exec firefox
-exec skypeforlinux
-exec slack
-exec thunderbird
-exec thunar
-
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
 bindsym $mod+2 workspace $workspace2
@@ -201,7 +188,7 @@ client.placeholder      $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.background       $inactive-bg-color
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -b -p '>>>' -fn '$font:size=$dmenu-font-size' -sb '$bg-color' -nb '$inactive-bg-color'
+bindsym $mod+d exec dmenu_run -b -p '>' -fn '$font:size=$dmenu-font-size' -sb '$bg-color' -nb '$inactive-bg-color'
 
 # bar - i3blocks 
 bar {
@@ -218,6 +205,19 @@ bar {
                 }
 }
 
+
+# autostart
+## network manager applet
+exec --no-startup-id nm-applet
+## screen lock and screen shutdown
+exec --no-startup-id xautolock -time 25 -locker 'i3lock --color "$lock-color"'
+exec --no-startup-id xset dpms 0 0 1800
+## apps
+exec firefox
+exec skypeforlinux
+exec slack
+exec thunderbird
+exec thunar
 
 # shutdown/reboot/suspend
 set $mode_system (p)suspend, (h)hibernate, (e)logout, (l)lock, (r)reboot, (s)shutdown
