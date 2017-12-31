@@ -31,3 +31,37 @@ WM_CLASS(STRING) = "Navigator", "Firefox"
 ```
 assign [class="Firefox"] $workspace1
 ```
+  
+  
+### minimalistic installation on top of ubuntu server
+install additional packages (on 17.10+):
+```
+sudo apt install -y \
+  xinit \
+  numix-icon-theme \
+  numix-blue-gtk-theme \
+  firefox \
+  thunderbird \
+  audacious \
+  evince \
+  ubuntu-restricted-extras \
+  ttf-ubuntu-font-family \
+  xfce4-terminal \
+  pulseaudio 
+```
+  
+`.bashrc` ask to start `Xorg` after login:
+```
+if ! $(ps -C Xorg >/dev/null); then
+  echo -ne "\033[0;32m\n  Start desktop environment ? (y/n) \033[0m"
+  read START_DE
+  if [[ ! "$START_DE" =~ ^(n|no)$ ]]; then
+    startx
+  fi
+fi
+```
+
+wrapper script to configure wifi via `systemd-networkd` and `wpa_supplicant` instead of `NetworkManager`:
+```
+./wifi.sh
+```
