@@ -1,5 +1,5 @@
 ### i3wm
-steps for ubuntu:
+ubuntu or lubuntu as a more lightweight base:
 ```
 # install packages
 sudo apt-get update
