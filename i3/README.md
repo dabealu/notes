@@ -13,12 +13,15 @@ sudo apt-get install -y \
   xclip \
   xautolock \
   lxappearance \
+  gnome-terminal \
   gsimplecal
 
 # copy configs
 mkdir -p ~/.config/i3
 cp * ~/.config/i3/
 ```
+  
+appearance settings are avaiable through `lxappearance` and `lightdm-gtk-greeter-settings`  
   
 binding app to workspace example:  
 - start app  
@@ -46,7 +49,6 @@ sudo apt install -y \
   evince \
   ubuntu-restricted-extras \
   ttf-ubuntu-font-family \
-  xfce4-terminal \
   pulseaudio 
 ```
   
