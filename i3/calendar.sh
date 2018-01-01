@@ -4,5 +4,5 @@ if [[ "$BLOCK_BUTTON" =~ 1|3 ]]; then
   gsimplecal
 fi
 
-date '+%d.%m.%Y'
+date '+%B %d.%m.%y   %H:%M:%S'
 

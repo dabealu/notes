@@ -38,7 +38,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # change focus
 bindsym $mod+j focus left
@@ -174,15 +174,16 @@ bindsym $mod+r mode "resize"
 set $bg-color #444444
 set $inactive-bg-color #000000
 set $text-color #ffffff
+set $urgent-text-color #000000
 set $inactive-text-color #848484
-set $urgent-bg-color #006d05
+set $urgent-bg-color #80ff00
 set $lock-color #000000
 
 # frame colors          border             background         text                 indicator          child_border
 client.focused          $bg-color          $bg-color          $text-color          $inactive-bg-color $inactive-bg-color
 client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color $inactive-bg-color
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color $inactive-bg-color
-client.urgent           $inactive-bg-color $urgent-bg-color   $text-color          $inactive-bg-color $inactive-bg-color
+client.urgent           $urgent-bg-color   $urgent-bg-color   $urgent-text-color   $inactive-bg-color $inactive-bg-color
 client.placeholder      $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color $inactive-bg-color
 # background take only 1 color
 client.background       $inactive-bg-color
@@ -199,10 +200,10 @@ bar {
     colors {
         background $inactive-bg-color
         separator  $inactive-text-color
-        # class            border    background         text
-        focused_workspace  $bg-color $bg-color          $text-color
-        inactive_workspace $bg-color $inactive-bg-color $inactive-text-color
-        urgent_workspace   $bg-color $urgent-bg-color   $text-color
+        # class            border           background         text
+        focused_workspace  $bg-color        $bg-color          $text-color
+        inactive_workspace $bg-color        $inactive-bg-color $inactive-text-color
+        urgent_workspace   $urgent-bg-color $urgent-bg-color   $urgent-text-color
     }
 }
 

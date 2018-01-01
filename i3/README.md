@@ -14,6 +14,7 @@ sudo apt-get install -y \
   xautolock \
   lxappearance \
   gnome-terminal \
+  ristretto \
   gsimplecal
 
 # copy configs
@@ -52,18 +53,14 @@ sudo apt install -y \
   pulseaudio 
 ```
   
-`.bashrc` ask to start `Xorg` after login:
+add to `.bashrc` to start `Xorg` after login:
 ```
-if ! $(ps -C Xorg >/dev/null); then
-  echo -ne "\033[0;32m\n  Start desktop environment ? (y/n) \033[0m"
-  read START_DE
-  if [[ ! "$START_DE" =~ ^(n|no)$ ]]; then
-    startx
-  fi
+if [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]]; then
+  exec startx
 fi
 ```
 
-wrapper script to configure wifi via `systemd-networkd` and `wpa_supplicant` instead of `NetworkManager`:
+script to configure wifi via `systemd-networkd` and `wpa_supplicant` instead of `NetworkManager`:
 ```
 ./wifi.sh
 ```
