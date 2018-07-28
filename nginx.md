@@ -12,10 +12,3 @@ log_format json escape=json '{ "timestamp": "$time_iso8601", '
 '"http_referrer": "$http_referer", '
 '"http_user_agent": "$http_user_agent" }';
 ```
-
-request to http://localhost/myloc/?date=2010-10-10 rewrited to access file `date=2010-10-10`
-```
-location /myloc {
-  rewrite /myloc/$ /myloc/date=$arg_date? break;
-}
-```
