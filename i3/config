@@ -91,16 +91,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspace aliases
-set $workspace1 "1: browser"
-set $workspace2 "2: messengers"
-set $workspace3 "3: editor"
-set $workspace4 "4: files"
-set $workspace5 "5: "
-set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
-set $workspace9 "9: "
-set $workspace10 "10: "
+set $workspace1 "1 browser"
+set $workspace2 "2 messengers"
+set $workspace3 "3 editor"
+set $workspace4 "4 files"
+set $workspace5 "5 "
+set $workspace6 "6 "
+set $workspace7 "7 "
+set $workspace8 "8 "
+set $workspace9 "9 "
+set $workspace10 "0 "
 
 # workspace assigments (get via xprop)
 assign [class="Firefox"] $workspace1
