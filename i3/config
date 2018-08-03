@@ -283,5 +283,8 @@ exec_always setxkbmap "us,ru" ",winkeys" "grp:alt_shift_toggle"
 # move the current workspace to the next output
 bindsym $mod+x move workspace to output right
 
+# translate selected text
+bindsym $mod+z exec "$HOME/.config/i3/translate.sh"
+
 # set wallpaper
 exec_always feh --bg-scale "$HOME/Firefox_wallpaper.png"
