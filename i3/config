@@ -209,6 +209,8 @@ bar {
 
 
 # autostart
+## start compton composite manager
+exec --no-startup-id compton --config ~/.config/i3/compton.conf
 ## network manager applet
 exec --no-startup-id nm-applet
 ## screen lock and screen shutdown

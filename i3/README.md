@@ -6,6 +6,7 @@ sudo apt-get update
 sudo apt-get install -y \
   i3 \
   i3blocks \
+  compton \
   feh \
   arandr \
   thunar \
