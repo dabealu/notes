@@ -211,8 +211,9 @@ bar {
 # autostart
 ## start compton composite manager
 exec --no-startup-id compton --config ~/.config/i3/compton.conf
-## network manager applet
+## network manager and bluetooth applets
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 ## screen lock and screen shutdown
 exec --no-startup-id xautolock -time 25 -locker 'i3lock --color "$lock-color"'
 exec --no-startup-id xset dpms 0 0 1800

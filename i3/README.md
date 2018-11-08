@@ -7,6 +7,13 @@ sudo apt-get install -y \
   i3 \
   i3blocks \
   compton \
+  pulseaudio \
+  pulseaudio-module-bluetooth \
+  pavucontrol \
+  bluetooth \
+  bluez \
+  bluez-tools \
+  blueman \
   feh \
   arandr \
   thunar \
