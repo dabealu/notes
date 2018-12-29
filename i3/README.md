@@ -23,7 +23,8 @@ sudo apt-get install -y \
   lxappearance \
   gnome-terminal \
   ristretto \
-  gsimplecal
+  gsimplecal \
+  fonts-font-awesome
 
 # copy configs
 mkdir -p ~/.config/i3
