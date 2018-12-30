@@ -13,52 +13,15 @@ set $dmenu-font-size 11
 
 font $font $font-size
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec gnome-terminal # i3-sensible-terminal
+# windows borders
+hide_edge_borders both
+for_window [class=".*"] border normal 1
+#for_window [class=".*"] border pixel 1 # hide title
 
-# kill focused window
-bindsym $mod+q kill
+# show window class in title
+for_window [class=".*"] title_format "<b>%class</b> : %title"
 
-# change focus
-bindsym $mod+Left  focus left
-bindsym $mod+Down  focus down
-bindsym $mod+Up    focus up
-bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
-
-# split in horizontal orientation
-bindsym $mod+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # workspace aliases
 # font awesome icons: https://fontawesome.com/cheatsheet
@@ -81,6 +44,10 @@ assign [class="Thunderbird"] $workspace2
 assign [class="Atom"] $workspace3
 assign [class="Code"] $workspace3
 assign [class="Thunar"] $workspace4
+
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
@@ -106,12 +73,52 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-# reload the configuration file
+# start a terminal
+bindsym $mod+Return exec gnome-terminal # i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+q kill
+
+# change focus
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal or vertical orientation
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent or child container
+bindsym $mod+a focus parent
+bindsym $mod+c focus child
+
+# reload the config file or restart i3
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# resize window (you can also use the mouse for that)
+
+# resize window
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
     bindsym Left resize shrink width 10 px or 10 ppt
@@ -136,7 +143,7 @@ set $urgent-text-color #000000
 set $text-color #ffffff
 set $bg-color #333333
 set $inactive-text-color #aaaaaa
-set $urgent-bg-color #80ff00
+set $urgent-bg-color #3cf63c
 
 # frame colors          border             background         text                 indicator          child_border
 client.focused          $bg-color          $bg-color          $text-color          $inactive-bg-color $inactive-bg-color
@@ -147,8 +154,6 @@ client.placeholder      $inactive-bg-color $inactive-bg-color $inactive-text-col
 # background take only 1 color
 client.background       $inactive-bg-color
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -b -p '' -fn '$font-dmenu:size=$dmenu-font-size' -sb '$bg-color' -nb '$inactive-bg-color' -nf '$text-color' -sf '$text-color'
 
 # bar - i3blocks
 bar {
@@ -170,22 +175,6 @@ bar {
 }
 
 
-# autostart
-## network manager and bluetooth applets
-exec --no-startup-id nm-applet
-exec --no-startup-id blueman-applet
-## start compton composite manager
-exec --no-startup-id compton --config ~/.config/i3/compton.conf
-## screen lock and screen shutdown
-exec --no-startup-id xautolock -time 25 -locker 'i3lock --color "$lock-color"'
-exec --no-startup-id xset dpms 0 0 1800
-## apps
-exec firefox
-exec skypeforlinux
-exec slack
-exec thunderbird
-exec thunar
-
 # shutdown/reboot/suspend
 set $mode_system [S]uspend   [H]ibernate   [E]xit   [L]ock   [R]eboot   [P]oweroff
 mode "$mode_system" {
@@ -201,13 +190,6 @@ mode "$mode_system" {
 }
 bindsym $mod+Escape mode "$mode_system"
 
-# windows borders
-hide_edge_borders both
-for_window [class=".*"] border normal 1
-#for_window [class=".*"] border pixel 1 # hide title
-
-# show window class in title
-for_window [class=".*"] title_format "<b>%class</b> : %title"
 
 # screen lock
 bindsym $mod+Control+l exec i3lock --color "$lock-color"
@@ -251,5 +233,24 @@ bindsym $mod+x move workspace to output right
 # translate selected text
 bindsym $mod+z exec "$HOME/.config/i3/translate.sh"
 
-# set wallpaper
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run -b -p '' -fn '$font-dmenu:size=$dmenu-font-size' -sb '$urgent-bg-color' -nb '$inactive-bg-color' -nf '$text-color' -sf '$urgent-text-color'
+
+
+# autostart
+## set wallpaper
 exec_always feh --bg-scale "$HOME/Firefox_wallpaper.png"
+## network manager and bluetooth applets
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+## start compton composite manager
+exec --no-startup-id compton --config ~/.config/i3/compton.conf
+## screen lock and screen shutdown
+exec --no-startup-id xautolock -time 25 -locker 'i3lock --color "$lock-color"'
+exec --no-startup-id xset dpms 0 0 1800
+## apps
+exec firefox
+exec skypeforlinux
+exec slack
+exec thunderbird
+exec thunar
