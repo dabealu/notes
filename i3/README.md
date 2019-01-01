@@ -4,6 +4,8 @@ ubuntu or lubuntu as a more lightweight base:
 # install packages
 sudo apt-get update
 sudo apt-get install -y \
+  curl \
+  unzip \
   i3 \
   i3blocks \
   compton \
@@ -29,6 +31,13 @@ sudo apt-get install -y \
 # copy configs
 mkdir -p ~/.config/i3
 cp * ~/.config/i3/
+
+# install icons font
+mkdir -p ~/.fonts
+curl -L https://github.com/FortAwesome/Font-Awesome/releases/download/5.6.3/fontawesome-free-5.6.3-desktop.zip -o /tmp/fontawesome.zip
+unzip -q /tmp/fontawesome.zip -d ~/.fonts/
+rm -f /tmp/fontawesome.zip
+sudo fc-cache --force --verbose
 ```
   
 appearance settings are avaiable through `lxappearance` and `lightdm-gtk-greeter-settings`  
