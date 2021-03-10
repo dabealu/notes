@@ -13,7 +13,6 @@ set $dmenu-font-size 11
 
 font $font $font-size
 
-
 # windows borders
 hide_edge_borders both
 for_window [class=".*"] border normal 1
@@ -21,7 +20,6 @@ for_window [class=".*"] border normal 1
 
 # show window class in title
 for_window [class=".*"] title_format "<b>%class</b> : %title"
-
 
 # workspace aliases
 # font awesome icons: https://fontawesome.com/cheatsheet
@@ -43,7 +41,6 @@ assign [class="Slack"] $workspace2
 assign [class="Telegram"] $workspace2
 assign [class="Code"] $workspace3
 assign [class="Thunar"] $workspace4
-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -116,7 +113,6 @@ bindsym $mod+c focus child
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-
 # resize window
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
@@ -129,9 +125,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
-
 
 # colors https://i3wm.org/docs/userguide.html#_changing_colors
 # no spaces before and after color !
@@ -152,7 +146,6 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $urgent-text-color
 client.placeholder      $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color $inactive-bg-color
 # background take only 1 color
 client.background       $inactive-bg-color
-
 
 # bar - i3blocks
 bar {
@@ -233,7 +226,6 @@ bindsym $mod+z exec "$HOME/.config/i3/translate.sh"
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -b -p '>' -fn '$font-dmenu:size=$dmenu-font-size' -sb '$urgent-bg-color' -nb '$inactive-bg-color' -nf '$text-color' -sf '$urgent-text-color'
 
-
 # autostart
 ## set wallpaper
 exec_always feh --bg-scale "$HOME/Firefox_wallpaper.png"
@@ -252,3 +244,10 @@ exec slack
 exec Telegram
 exec thunar
 exec code
+
+# enable tap to click
+# commands to list devices, their properties and set prop value:
+#   xinput list
+#   xinput list-props <dev-id>
+#   xinput set-prop <dev-id> <prop-id> 1
+exec xinput set-prop 11 320 1
