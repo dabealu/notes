@@ -25,23 +25,22 @@ for_window [class=".*"] title_format "<b>%class</b> : %title"
 
 # workspace aliases
 # font awesome icons: https://fontawesome.com/cheatsheet
-set $workspace1 "  1    "
-set $workspace2 "  2    "
-set $workspace3 "  3    "
-set $workspace4 "  4    "
-set $workspace5 "  5    "
-set $workspace6 "  6    "
-set $workspace7 "  7    "
-set $workspace8 "  8    "
-set $workspace9 "  9    "
-set $workspace10 "  0    "
+set $workspace1 "  1  "
+set $workspace2 "  2  "
+set $workspace3 "  3  "
+set $workspace4 "  4  "
+set $workspace5 "  5  "
+set $workspace6 "  6  "
+set $workspace7 "  7  "
+set $workspace8 "  8  "
+set $workspace9 "  9  "
+set $workspace10 "  0  "
 
 # workspace assigments (get via xprop)
 assign [class="Firefox"] $workspace1
-assign [class="Skype"] $workspace2
+assign [class="Google-chrome"] $workspace1
 assign [class="Slack"] $workspace2
-assign [class="Thunderbird"] $workspace2
-assign [class="Atom"] $workspace3
+assign [class="Telegram"] $workspace2
 assign [class="Code"] $workspace3
 assign [class="Thunar"] $workspace4
 
@@ -74,7 +73,7 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal # i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -174,7 +173,6 @@ bar {
     }
 }
 
-
 # shutdown/reboot/suspend
 set $mode_system [S]uspend   [H]ibernate   [E]xit   [L]ock   [R]eboot   [P]oweroff
 mode "$mode_system" {
@@ -189,7 +187,6 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Escape mode "$mode_system"
-
 
 # screen lock
 bindsym $mod+Control+l exec i3lock --color "$lock-color"
@@ -225,16 +222,16 @@ bindsym --release button3 kill
 bindsym button2 layout toggle
 
 # keyboard layout swtiching
-exec_always setxkbmap "us,ru" ",winkeys" "grp:alt_shift_toggle"
+exec_always setxkbmap "us,ru" ",winkeys" "grp:win_space_toggle" #"grp:alt_shift_toggle"
 
-# move the current workspace to the next output
+# move the current workspace to the next screen
 bindsym $mod+x move workspace to output right
 
 # translate selected text
 bindsym $mod+z exec "$HOME/.config/i3/translate.sh"
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -b -p '' -fn '$font-dmenu:size=$dmenu-font-size' -sb '$urgent-bg-color' -nb '$inactive-bg-color' -nf '$text-color' -sf '$urgent-text-color'
+bindsym $mod+d exec dmenu_run -b -p '>' -fn '$font-dmenu:size=$dmenu-font-size' -sb '$urgent-bg-color' -nb '$inactive-bg-color' -nf '$text-color' -sf '$urgent-text-color'
 
 
 # autostart
@@ -250,9 +247,8 @@ exec --no-startup-id xautolock -time 25 -locker 'i3lock --color "$lock-color"'
 exec --no-startup-id xset dpms 0 0 1800
 ## apps
 exec firefox
-exec skypeforlinux
+exec google-chrome
 exec slack
-exec thunderbird
+exec Telegram
 exec thunar
 exec code
-

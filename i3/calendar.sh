@@ -5,4 +5,3 @@ if [[ "$BLOCK_BUTTON" =~ 1|3 ]]; then
 fi
 
 date '+%B %d.%m.%y   %H:%M:%S'
-
