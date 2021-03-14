@@ -45,6 +45,14 @@ WM_CLASS(STRING) = "Navigator", "Firefox"
 ```
 assign [class="Firefox"] $workspace1
 ```
+
+enable `performance` CPU scaling governor:
+```
+sudo apt-get install -y cpufrequtils
+echo 'GOVERNOR="performance"' | sudo tee /etc/default/cpufrequtils
+# check
+cat /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_governor
+```
   
   
 ### minimalistic installation on top of ubuntu server

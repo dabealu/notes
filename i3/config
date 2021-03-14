@@ -209,13 +209,13 @@ bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
 
 # mouse right over title - kill window
-bindsym --release button3 kill
+bindsym button3 kill
 
 # mouse middle - switch layout between split/tabbed/stacked
 bindsym button2 layout toggle
 
 # keyboard layout swtiching
-exec_always setxkbmap "us,ru" ",winkeys" "grp:win_space_toggle" #"grp:alt_shift_toggle"
+exec_always setxkbmap "us,ru" ",winkeys" "grp:alt_shift_toggle"
 
 # move the current workspace to the next screen
 bindsym $mod+x move workspace to output right
