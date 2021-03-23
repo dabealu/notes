@@ -11,10 +11,10 @@ set $dmenu-font-size 12
 
 font $font $font-size
 
-# Windows borders
-hide_edge_borders both
-for_window [class=".*"] border normal 1
-# for_window [class=".*"] border pixel 1 # hide title
+# Set thin border for all windows
+default_border normal 1
+# gaps inner 1
+# gaps outer 1
 
 # Show window class in title
 for_window [class=".*"] title_format "<b>%class</b> : %title"
@@ -54,11 +54,10 @@ set $term x-terminal-emulator
 
 ### Output configuration
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
-# Example configuration:
+# Set resolution (to list outputs - `swaymsg -t get_outputs`):
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
 
 ### Idle configuration
@@ -66,10 +65,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # your displays after another 1800 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
-         timeout 900  'swaylock -f -c 000000' \
-         timeout 1800 'swaymsg "output * dpms off"' \
-              resume  'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+        timeout 900  'swaylock -f -c 000000' \
+        timeout 1800 'swaymsg "output * dpms off"' \
+        resume       'swaymsg "output * dpms on"' \
+        before-sleep 'swaylock -f -c 000000'
 
 
 ### Input configuration
@@ -87,9 +86,6 @@ input type:keyboard {
     # Toggle keyboard layout
     xkb_layout  us,ru
     xkb_options grp:alt_shift_toggle
-
-    xkb_variant nodeadkeys
-    xkb_model   "thinkpad"
 }
 
 ### Key bindings
@@ -242,28 +238,35 @@ client.background       $inactive-bg-color
 
 # Status Bar (man 5 sway-bar):
 bar {
-    position top
-
     # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    status_command while ~/.config/sway/status.sh; do sleep 1; done
+
+    position top #bottom
+    font $font $bar-font-size
+    tray_padding 0
+    # tray_output primary
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline $text-color
+        background $inactive-bg-color
+        separator  $inactive-text-color
+
+        # class            border             background         text
+        focused_workspace  $bg-color          $bg-color          $text-color
+        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $urgent-text-color
     }
 }
 
 # Power control shutdown/reboot/suspend:
 set $mode_system [S]uspend   [H]ibernate   [E]xit   [L]ock   [R]eboot   [P]oweroff
 mode "$mode_system" {
-    bindsym s exec --no-startup-id swaylock --color "$lock-color" && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id swaylock --color "$lock-color" && systemctl hibernate, mode "default"
-    bindsym e exec --no-startup-id swaymsg exit, mode "default"
-    bindsym l exec --no-startup-id swaylock --color "$lock-color", mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym p exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym s exec swaylock --color "$lock-color" && systemctl suspend, mode "default"
+    bindsym h exec swaylock --color "$lock-color" && systemctl hibernate, mode "default"
+    bindsym e exec swaymsg exit, mode "default"
+    bindsym l exec swaylock --color "$lock-color", mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym p exec systemctl poweroff, mode "default"
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -281,9 +284,9 @@ bindsym --release Shift+Print exec "slurp | grim -g - - | wl-copy"
 bindsym --release $mod+Shift+Print exec "slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%F-%T.png')"
 
 # Pulse Audio controls (get sink list to chose appropriate: pactl list sinks)
-bindsym $mod+Control+plus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym $mod+Control+minus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym $mod+Control+0 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+Control+plus exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+Control+minus exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+Control+0 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # TODO: screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
@@ -316,14 +319,14 @@ bindsym $mod+d exec dmenu_run -b -p '>' -fn '$font-dmenu:size=$dmenu-font-size' 
 
 
 ### Autostart
-# network manager and bluetooth applets
-exec --no-startup-id nm-applet
-exec --no-startup-id blueman-applet
+# bluetooth applet
+exec blueman-applet
 # notification daemon
-exec --no-startup-id dunst
+exec dunst
 # apps
 exec google-chrome
 exec slack
+exec Telegram
 exec code
 
 
