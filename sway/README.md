@@ -134,7 +134,7 @@ more configuration examples: https://netplan.io/examples/
 also check FAQ and troubleshooting for more info.
 
 
-## additional packages
+### additional packages
 ```
 sudo apt install -y --no-install-recommends \
   numix-icon-theme \
@@ -145,3 +145,7 @@ sudo apt install -y --no-install-recommends \
   ubuntu-restricted-extras \
   ttf-ubuntu-font-family
 ```
+
+
+### touchpad gestures
+libinput: https://wayland.freedesktop.org/libinput/doc/latest/gestures.html
