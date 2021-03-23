@@ -13,6 +13,7 @@ sudo apt-get install -y --no-install-recommends \
   swaylock \
   swayidle \
   xwayland \
+  dmenu \
   libnotify-bin \
   dunst \
   pulseaudio \
@@ -22,7 +23,10 @@ sudo apt-get install -y --no-install-recommends \
   bluetooth \
   bluez \
   bluez-tools \
-  blueman
+  blueman \
+  wl-clipboard \
+  grim \
+  slurp
 
 # extra packages
 sudo apt-get install -y --no-install-recommends \

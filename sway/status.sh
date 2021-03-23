@@ -10,6 +10,6 @@ BAT=$( P='/sys/class/power_supply/BAT0/'; test -d $P && awk '{s[NR]=$1} END {pri
 VOL=$( amixer -D pulse get Master | awk -F '[][]' '/%/ {print $2; exit}' )
 KB_LAYOUT=$( swaymsg -p -t get_inputs | awk '/Active Keyboard Layout/ {printf("%.2s", toupper($4)); exit}' )
 
-echo "ping $PING  la1 $LA1_CORE  mem $MEM_USED  rootfs $ROOTFS | bat $BAT | vol $VOL | $KB_LAYOUT | $DATE"
+echo "ping $PING  la1 $LA1_CORE  mem $MEM_USED  rootfs $ROOTFS | <span foreground=\"#66cc00\">bat $BAT</span> | <span foreground=\"#ff93fd\">vol $VOL</span> | <span foreground=\"#4cffff\">$KB_LAYOUT</span> | $DATE"
 
 
