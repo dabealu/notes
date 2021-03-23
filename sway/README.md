@@ -13,6 +13,7 @@ sudo apt-get install -y --no-install-recommends \
   swaylock \
   swayidle \
   xwayland \
+  libnotify-bin \
   dunst \
   pulseaudio \
   pulseaudio-module-bluetooth \
@@ -48,7 +49,12 @@ position in pixels, so second monitor placed to the right will have `1920,0`.
 
 
 ### appearance
-some appearance settings are avaiable through `lxappearance`  
+some appearance settings are avaiable through `lxappearance`
+
+
+### notifications
+default dunst config: `/etc/xdg/dunst/dunstrc`
+user specific customizations: `~/.config/dunst/dunstrc`
 
 
 ### performance
@@ -107,6 +113,11 @@ to bring interface up/down:
 ```
 ip link set wlp2s0 up
 ip link set wlp2s0 down
+```
+
+show settings:
+```
+netplan get all
 ```
 
 more configuration examples: https://netplan.io/examples/

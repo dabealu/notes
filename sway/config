@@ -53,11 +53,11 @@ set $term x-terminal-emulator
 
 
 ### Output configuration
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# Default wallpaper
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
-# Set resolution (to list outputs - `swaymsg -t get_outputs`):
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+# Set resolution, run `swaymsg -t get_outputs` to list outputs
+# output HDMI-A-1 resolution 1920x1080 position 1920,0
 
 
 ### Idle configuration
@@ -241,7 +241,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     status_command while ~/.config/sway/status.sh; do sleep 1; done
 
-    position top #bottom
+    position top
     font $font $bar-font-size
     tray_padding 0
     # tray_output primary
