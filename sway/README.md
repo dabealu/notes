@@ -61,6 +61,12 @@ default dunst config: `/etc/xdg/dunst/dunstrc`
 user specific customizations: `~/.config/dunst/dunstrc`
 
 
+### timezone
+```
+sudo timedatectl set-timezone Asia/Singapore
+```
+
+
 ### performance
 enable `performance` CPU scaling governor:
 ```
