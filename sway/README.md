@@ -26,7 +26,8 @@ sudo apt-get install -y --no-install-recommends \
   blueman \
   wl-clipboard \
   grim \
-  slurp
+  slurp \
+  wpasupplicant
 
 # extra packages
 sudo apt-get install -y --no-install-recommends \
@@ -76,7 +77,8 @@ echo 'GOVERNOR="performance"' | sudo tee /etc/default/cpufrequtils
 cat /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_governor
 ```
 
-TODO: kernel `mitigations=off` parameter
+set `mitigations=off` kernel parameter to disable hardware vulnerability mitigations.
+**warning:** this is potentially dangerous, but can significantly increase CPU performance.
 
 
 ### passwordless sudo
@@ -132,6 +134,16 @@ netplan get all
 
 more configuration examples: https://netplan.io/examples/
 also check FAQ and troubleshooting for more info.
+
+install and run `wavemon` TUI to list wifi networks:
+```
+sudo apt install -y wavemon
+
+wavemon
+```
+
+or use `kismet` - advanced wireless scanner/sniffer with web interface:
+https://www.kismetwireless.net/docs/readme_group.html
 
 
 ### additional packages
